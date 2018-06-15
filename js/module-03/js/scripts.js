@@ -1,15 +1,27 @@
 'use strict';
-let userInput;
-const numbers = [];
-let total = 0;
+const logins = ["Mango", "robotGoogles", "Poly", "Aj4x1sBozz", "qwerty123"]
+const login = prompt('Введите логин');
 
-do {
-    userInput = prompt('Введите число');
-    numbers.push(Number(userInput));   
-} while (userInput);
+function checkLoginValidity(login){
+	const len = login.length;
+	if ((3 < len) && (len < 17)) {return true};
+	return false;
+};
 
-for (const i of numbers){
-    total += i;
-}
-alert(`Общая сумма чисел равна ${total}`);
+function checkIfLoginExists(logins, login){
+	if (logins.includes(login)) {return true};
+	return false;
+};
 
+function addLogin(logins, login){
+	if (!checkLoginValidity(login)) {
+		alert('Ошибка! Логин должен быть от 4 до 16 символов');
+	} else if (checkIfLoginExists(logins, login)) {
+		alert('Такой логин уже используется!')
+	} else {
+		logins.push(login);
+		alert('Логин успешно добавлен!')
+	}
+};
+
+addLogin(logins, login);
